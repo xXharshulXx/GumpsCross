@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  /* iOS 26 Liquid Glass Palette */
+  --glass-surface: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+  
+  --gc-warm-white: #FBF8F3;
+  --gc-sand: #F2E8DD;
+  --gc-stone: #D9D2C7;
+  --gc-charcoal: #1F2326;
+  --gc-taupe: #6C625A;
+  --gc-glass-blue: #A7C2D2;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--gc-charcoal);
+  /* Liquid Gradient Background */
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(167, 194, 210, 0.4), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(242, 232, 221, 0.6), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(217, 210, 199, 0.4), transparent 40%),
+    #FBF8F3;
+  background-attachment: fixed; /* Parallax-like feel */
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 { font-family: Fraunces, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
+
+a { color: inherit; }
+
+::selection { background: rgba(167, 194, 210, 0.35); }
+
+/* Utility Classes for Liquid Glass */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.03),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
