@@ -94,7 +94,7 @@ export function Footer() {
 
       <div className="border-t border-[rgba(217,210,199,.55)] bg-[rgba(242,232,221,.18)]">
         <Container className="flex flex-col gap-2 py-6 text-xs text-(--gc-taupe) md:flex-row md:items-center md:justify-between cursor-default">
-          <div>© {new Date().getFullYear()} Gump’s Cross. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Gump’s Cross. All rights reserved. | Herrsheyys</div>
           <div className="flex gap-4">
             <a className="underline underline-offset-4" href="#">
               Privacy
