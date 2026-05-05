@@ -57,13 +57,13 @@ export function About() {
                 label="Architectural Detail"
                 className="aspect-4/3"
                 tone="stone"
-                src="/images/knowus1.webp"
+                src="/images/KnowUs1.webp"
               />
               <PlaceholderMedia
                 label="Light & Shadow"
                 className="aspect-16/10"
                 tone="blue"
-                src="/images/knowus2.webp"
+                src="/images/KnowUs2.webp"
               />
             </div>
           </div>
