@@ -44,7 +44,7 @@ export const EVENTS: Event[] = [
       "Free entry. Some workshops require prior registration. Seating is limited for selected sessions.",
 
     heroImage:
-      "/images/events/BkkDesignWeek/Entrance.jpg",
+      "/images/Events/BkkDesignWeek/Entrance.jpg",
 
     eventImage:
       "/images/Events/BkkDesignWeek/Hero.jpg",
