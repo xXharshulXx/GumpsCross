@@ -67,7 +67,6 @@ function useScrollControls(ref: React.RefObject<HTMLDivElement | null>) {
 
 export function Home() {
   const now = new Date();
-  <Analytics />
   const upcoming = [...EVENTS]
     .filter((e) => {
       const start = new Date(e.startDateIso + "T00:00:00");
@@ -87,6 +86,8 @@ export function Home() {
   const evtControls = useScrollControls(eventsRef);
 
   return (
+    <>
+      <Analytics />
     <div>
       {/* HERO */}
       <section className="relative overflow-hidden">
@@ -280,5 +281,6 @@ export function Home() {
         </Container>
       </section>
     </div>
+  </>
   );
 }
