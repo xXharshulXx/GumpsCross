@@ -57,13 +57,13 @@ export function About() {
                 label="Architectural Detail"
                 className="aspect-4/3"
                 tone="stone"
-                src="public/images/knowus1.webp"
+                src="/images/knowus1.webp"
               />
               <PlaceholderMedia
                 label="Light & Shadow"
                 className="aspect-16/10"
                 tone="blue"
-                src="public/images/knowus2.webp"
+                src="/images/knowus2.webp"
               />
             </div>
           </div>
@@ -100,9 +100,9 @@ export function About() {
             description="Architecture designed to shape light, movement, and feeling." 
           />
           <div className="grid gap-4 md:grid-cols-3">
-            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="public/images/Atmosphere1.webp" className="aspect-4/5" tone="stone" />
-            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="public/images/Atmosphere2.jpg" className="aspect-4/5" tone="blue" />
-            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="public/images/Atmosphere3.jpg" className="aspect-4/5" tone="sand" />
+            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="/images/Atmosphere1.webp" className="aspect-4/5" tone="stone" />
+            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="/images/Atmosphere2.jpg" className="aspect-4/5" tone="blue" />
+            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="/images/Atmosphere3.jpg" className="aspect-4/5" tone="sand" />
           </div>
         </Container>
       </section>

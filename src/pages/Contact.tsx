@@ -184,7 +184,7 @@ const isValid =
 
               <PlaceholderMedia
                 label="[PLACEHOLDER: CONTACT / ATMOSPHERE IMAGE]"
-                src="public/images/contactPage.webp"
+                src="/images/contactPage.webp"
                 className="aspect-16/11"
                 tone="sand"
               />

@@ -94,7 +94,7 @@ export function Home() {
             label="Gump's Cross Hero"
             className="h-screen min-h-[600px] rounded-none"
             tone="charcoal"
-            src="public/images/HomeBanner.webp"
+            src="/images/HomeBanner.webp"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(251,248,243,0.2),rgba(251,248,243,0.8)_90%)]" />
         </div>

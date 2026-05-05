@@ -34,7 +34,7 @@ export function Spaces() {
 
           <PlaceholderMedia
             label="Leasing Opportunity"
-            src="public/images/Leasing.jpg"
+            src="/images/Leasing.jpg"
             className="aspect-4/3"
             tone="stone"
           />
