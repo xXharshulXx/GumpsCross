@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
@@ -64,23 +64,23 @@ export function Footer() {
             <div className="font-medium text-(--gc-charcoal)">Social</div>
             <div className="flex items-center gap-4 pt-1">
               <a
-                href="#"
+                href="https://www.instagram.com/gumpscross/"
                 aria-label="Instagram"
                 className="text-(--gc-taupe)sition hover:text-(--gc-charcoal)"
               >
                 <FaInstagram className="h-5 w-5" />
               </a>
 
-              <a
-                href="#"
+              <Link
+                to="contact"
                 aria-label="LINE"
                 className="text-(--gc-taupe) transition hover:text-(--gc-charcoal)"
               >
                 <SiLine className="h-5 w-5" />
-              </a>
+              </Link>
 
               <a
-                href="#"
+                href="https://www.facebook.com/gumpscross/"
                 aria-label="Facebook"
                 className="text-(--gc-taupe) transition hover:text-(--gc-charcoal)"
               >
@@ -94,7 +94,7 @@ export function Footer() {
 
       <div className="border-t border-[rgba(217,210,199,.55)] bg-[rgba(242,232,221,.18)]">
         <Container className="flex flex-col gap-2 py-6 text-xs text-(--gc-taupe) md:flex-row md:items-center md:justify-between cursor-default">
-          <div>© {new Date().getFullYear()} Gump’s Cross. All rights reserved. | Herrsheyys</div>
+          <div>© {new Date().getFullYear()} Gump’s Cross. All rights reserved.</div>
           <div className="flex gap-4">
             <a className="underline underline-offset-4" href="#">
               Privacy

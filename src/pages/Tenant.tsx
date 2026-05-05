@@ -39,7 +39,7 @@ export function TenantPage() {
           <div className="flex items-center justify-between gap-4">
             <div className="space-y-2">
               <div className="text-xs font-medium tracking-[0.22em] uppercase text-(--gc-taupe)">
-                Tenant
+                
               </div>
               <h1 className="text-4xl tracking-tight md:text-5xl">
                 {tenant.name}
@@ -79,7 +79,7 @@ export function TenantPage() {
         <Container className="grid gap-10 md:grid-cols-3">
           {/* MAIN */}
           <div className="space-y-4 md:col-span-2">
-            <h2 className="text-2xl tracking-tight">Brand description</h2>
+            <h2 className="text-2xl tracking-tight">About Us</h2>
             <p className="text-[15px] leading-7 text-(--gc-taupe) md:text-base">
               {tenant.blurb}
             </p>
@@ -145,31 +145,7 @@ export function TenantPage() {
                 )}
               </div>
 
-              <div className="mt-6 text-sm font-medium text-(--gc-charcoal)">
-                Mini location map
-              </div>
-
-              {/* CLEAN MAP */}
-              <div className="relative mt-3 overflow-hidden rounded-2xl pointer-events-none">
-                {tenant.map ? (
-                  <>
-                    <iframe
-                      src={`${tenant.map}&zoom=16&maptype=roadmap&controls=0&disableDefaultUI=true`}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="aspect-4/3 w-full border-0"
-                      aria-hidden="true"
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(251,248,243,0.0),rgba(251,248,243,0.25))]" />
-                  </>
-                ) : (
-                  <PlaceholderMedia
-                    label="[PLACEHOLDER: MINI MAP]"
-                    className="aspect-4/3"
-                    tone="sand"
-                  />
-                )}
-              </div>
+              
             </div>
 
             <div className="flex flex-wrap gap-3">

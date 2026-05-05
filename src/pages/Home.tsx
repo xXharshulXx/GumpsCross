@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from "react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { PlaceholderMedia } from "@/components/PlaceholderMedia";
@@ -21,6 +22,48 @@ function formatDateRange(start: string, end?: string) {
   return `${formatDate(start)} – ${formatDate(end)}`;
 }
 
+function useScrollControls(ref: React.RefObject<HTMLDivElement | null>) {
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const update = () => {
+    const el = ref.current;
+    if (!el) return;
+
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(
+      el.scrollLeft + el.clientWidth < el.scrollWidth - 1
+    );
+  };
+
+  useEffect(() => {
+    update();
+    const el = ref.current;
+    if (!el) return;
+
+    el.addEventListener("scroll", update);
+    window.addEventListener("resize", update);
+
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const scroll = (dir: "left" | "right") => {
+    const el = ref.current;
+    if (!el) return;
+
+    const amount = el.clientWidth * 0.8;
+    el.scrollBy({
+      left: dir === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
+  return { canScrollLeft, canScrollRight, scroll };
+}
+
 export function Home() {
   const now = new Date();
 
@@ -36,6 +79,12 @@ export function Home() {
     .sort((a, b) => a.startDateIso.localeCompare(b.startDateIso))
     .slice(0, 6);
 
+  const directoryRef = useRef<HTMLDivElement>(null);
+  const eventsRef = useRef<HTMLDivElement>(null);
+
+  const dirControls = useScrollControls(directoryRef);
+  const evtControls = useScrollControls(eventsRef);
+
   return (
     <div>
       {/* HERO */}
@@ -45,7 +94,7 @@ export function Home() {
             label="Gump's Cross Hero"
             className="h-screen min-h-[600px] rounded-none"
             tone="charcoal"
-            src="https://lh3.googleusercontent.com/p/AF1QipNJHDIK_W1Q77vcol5CF6yEkBFAJBSeD9wbOi4A=s1360-w1360-h1020-rw"
+            src="public/images/HomeBanner.webp"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(251,248,243,0.2),rgba(251,248,243,0.8)_90%)]" />
         </div>
@@ -62,8 +111,7 @@ export function Home() {
 
             <p className="cursor-default max-w-xl text-[15px] leading-7 text-gray-800 md:text-base">
               An intentional destination where everyday rituals meet considered
-              design and a sense of belonging — shaped by cafés, creative spaces,
-              and a vibrant community.
+              design and a sense of belonging.
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -71,7 +119,7 @@ export function Home() {
               <Button to="/spaces" variant="secondary">
                 View Available Spaces
               </Button>
-              <Button to="/events" variant="ghost">
+              <Button to="/events" variant="primary">
                 See Events
               </Button>
             </div>
@@ -79,123 +127,154 @@ export function Home() {
         </Container>
       </section>
 
-      {/* DIRECTORY PREVIEW */}
+      {/* DIRECTORY */}
       <section className="bg-[rgba(242,232,221,.35)] py-16 md:py-24">
-        <Container className="cursor-default space-y-10">
+        <Container className="space-y-10">
           <SectionHeading
             eyebrow="Directory"
             title="All Under One Roof"
             description="Cafés, Restaurants & Community Spaces."
           />
 
-          <div className="flex gap-5 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {TENANTS.slice(0, 6).map((t) => (
-              <Link
-                key={t.slug}
-                to={`/directory/${t.slug}`}
-                className="group relative w-[320px] flex-none overflow-hidden rounded-3xl bg-[rgba(251,248,243,.7)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+          <div className="relative">
+            {dirControls.canScrollLeft && (
+              <Button
+                variant="primary"
+                onClick={() => dirControls.scroll("left")}
+                className="text-black !p-0 absolute md:-left-5 left-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full flex items-center justify-center"
               >
-                <div className="p-6 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="text-lg tracking-tight">
-                      {t.name}
-                    </div>
-                    <Tag>Floor {t.floor}</Tag>
-                  </div>
+                ←
+              </Button>
+            )}
 
-                  {/* Hover Swap Media */}
-                  <div className="relative">
-                    {/* Default (Logo) */}
-                    <div className="transition duration-300 ease-out group-hover:opacity-0">
-                      {t.logoImage ? (
-                        <img
-                          src={t.logoImage}
-                          alt={`${t.name} logo`}
-                          className="aspect-video w-full rounded-xl object-cover"
-                        />
-                      ) : (
-                        <PlaceholderMedia
-                          label="[PLACEHOLDER: TENANT LOGO]"
-                          className="aspect-video"
-                          tone="sand"
-                        />
-                      )}
+            {dirControls.canScrollRight && (
+              <Button
+                variant="primary"
+                onClick={() => dirControls.scroll("right")}
+                className="text-black !p-0 absolute md:-right-5 -right-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full flex items-center justify-center"
+              >
+                →
+              </Button>
+            )}
+
+            <div
+              ref={directoryRef}
+              className="flex gap-5 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {TENANTS.slice(0, 6).map((t) => (
+                <Link
+                  key={t.slug}
+                  to={`/directory/${t.slug}`}
+                  className="group w-[320px] flex-none rounded-3xl bg-[rgba(251,248,243,.7)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div className="p-6 space-y-4">
+                    <div className="flex justify-between">
+                      <div className="text-lg">{t.name}</div>
+                      <Tag>Floor {t.floor}</Tag>
                     </div>
 
-                    {/* Hover (Interior) */}
-                    <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 ease-out group-hover:opacity-100">
-                      {t.interiorImage ? (
-                        <img
-                          src={t.interiorImage}
-                          alt={`${t.name} interior`}
-                          className="aspect-video w-full rounded-xl object-cover"
-                        />
-                      ) : (
-                        <PlaceholderMedia
-                          label="[PLACEHOLDER: TENANT INTERIOR IMAGE]"
-                          className="aspect-video"
-                          tone="blue"
-                        />
-                      )}
+                    <div className="relative">
+                      <div className="group-hover:opacity-0 transition">
+                        {t.logoImage ? (
+                          <img
+                            src={t.logoImage}
+                            className="aspect-video w-full rounded-xl object-cover"
+                          />
+                        ) : (
+                          <PlaceholderMedia label="Placeholder" className="aspect-16/10" />
+                        )}
+                      </div>
+
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition">
+                        {t.interiorImage ? (
+                          <img
+                            src={t.interiorImage}
+                            className="aspect-video w-full rounded-xl object-cover"
+                          />
+                        ) : (
+                          <PlaceholderMedia label="Placeholder" className="aspect-16/10" />
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* EVENTS PREVIEW */}
+      {/* EVENTS */}
       <section className="py-16 md:py-24">
-        <Container className="cursor-default space-y-10">
+        <Container className="space-y-10">
           <SectionHeading
             eyebrow="Events"
             title="Moments Worth Showing Up For"
-            description="A collection of upcoming gatherings and experiences."
+            description="A collection of upcoming gatherings."
           />
 
-          <div className="flex gap-5 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {upcoming.map((e) => (
-              <Link
-                key={e.slug}
-                to={`/events/${e.slug}`}
-                className="group w-[320px] flex-none rounded-3xl bg-[rgba(242,232,221,.45)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+          <div className="relative">
+            {evtControls.canScrollLeft && (
+              <Button
+                variant="primary"
+                onClick={() => evtControls.scroll("left")}
+                className="!p-0 absolute left-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full flex items-center justify-center"
               >
-                <div className="p-5 space-y-4">
-                  {e.eventImage || e.heroImage ? (
-                    <img
-                      src={e.eventImage || e.heroImage}
-                      alt={e.title}
-                      className="aspect-16/10 w-full rounded-2xl object-cover"
-                    />
-                  ) : (
-                    <PlaceholderMedia
-                      label="[PLACEHOLDER: EVENT IMAGE]"
-                      className="aspect-16/10"
-                      tone="stone"
-                    />
-                  )}
+                ←
+              </Button>
+            )}
 
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="text-lg tracking-tight">
-                        {e.title}
+            {evtControls.canScrollRight && (
+              <Button
+                variant="primary"
+                onClick={() => evtControls.scroll("right")}
+                className="!p-0 absolute right-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full flex items-center justify-center"
+              >
+                →
+              </Button>
+            )}
+
+            <div
+              ref={eventsRef}
+              className="flex gap-5 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {upcoming.map((e) => (
+                <Link
+                  key={e.slug}
+                  to={`/events/${e.slug}`}
+                  className="group w-[320px] flex-none rounded-3xl bg-[rgba(242,232,221,.45)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div className="p-5 space-y-4">
+                    {e.eventImage || e.heroImage ? (
+                      <img
+                        src={e.eventImage || e.heroImage}
+                        className="aspect-16/10 w-full rounded-2xl object-cover"
+                      />
+                    ) : (
+                      <PlaceholderMedia label="Placeholder" className="aspect-16/10" />
+                    )}
+
+                    <div>
+                      <div className="flex justify-between">
+                        <div>{e.title}</div>
+                        <Tag>{e.type}</Tag>
                       </div>
-                      <Tag>{e.type}</Tag>
-                    </div>
 
-                    <div className="text-sm text-(--gc-taupe)">
-                      {formatDateRange(e.startDateIso, e.endDateIso)}
-                    </div>
+                      <div className="text-sm text-(--gc-taupe)">
+                        {formatDateRange(
+                          e.startDateIso,
+                          e.endDateIso
+                        )}
+                      </div>
 
-                    <div className="text-sm text-(--gc-taupe) line-clamp-2">
-                      {e.excerpt}
+                      <div className="text-sm text-(--gc-taupe) line-clamp-2">
+                        {e.excerpt}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </Container>
       </section>

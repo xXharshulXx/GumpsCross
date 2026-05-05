@@ -45,9 +45,49 @@ const isValid =
   form.email.trim().length > 0 &&
   form.message.trim().length > 0;
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sent");
+
+    const formData = new FormData();
+
+    formData.append("name", form.name);
+    formData.append("brand", form.brand);
+    formData.append("email", form.email);
+    formData.append("message", form.message);
+
+    // get file input
+    const fileInput = e.currentTarget.querySelector(
+      'input[type="file"]'
+    ) as HTMLInputElement;
+
+    if (fileInput?.files?.[0]) {
+      formData.append("file", fileInput.files[0]);
+    }
+
+    try {
+      const res = await fetch("https://formspree.io/f/xpqbdkvo", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setForm({
+          name: "",
+          brand: "",
+          email: "",
+          message: defaultMessage,
+        });
+      } else {
+        alert("Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Network error.");
+    }
   }
 
   return (
@@ -106,7 +146,7 @@ const isValid =
 
                     <div className="flex items-center gap-4">
                       <a
-                        href="#"
+                        href="https://www.instagram.com/gumpscross/"
                         aria-label="Instagram"
                         className="rounded-full p-2 transition hover:bg-[rgba(217,210,199,.25)] hover:text-(--gc-charcoal)"
                       >
@@ -114,7 +154,7 @@ const isValid =
                       </a>
 
                       <a
-                        href="#"
+                        href="https://www.facebook.com/gumpscross/"
                         aria-label="Facebook"
                         className="rounded-full p-2 transition hover:bg-[rgba(217,210,199,.25)] hover:text-(--gc-charcoal)"
                       >
@@ -144,7 +184,7 @@ const isValid =
 
               <PlaceholderMedia
                 label="[PLACEHOLDER: CONTACT / ATMOSPHERE IMAGE]"
-                src="https://lh3.googleusercontent.com/sitesv/APaQ0SSyv8H-066bPOLRDWqn4ietdttwR91yh3SCyj8y-O05wtBfz7lu9KXkcDzEYGg5uDs4rV_DaH0wP9Q3BcG-JGtcq0Gp9DVjh08Ttmyg7oW4RYZmN6wT6V-6n0OooBiluWh76IXtu6YIFA6Jdov2WR41QBPVI539e5XE_Rv5z94Q5P4h41Lmsh9GYKRih0C_4moAtOXh9XoakiqQNTb0D1ZwOXd4YF0POmtKU1g=w1280"
+                src="public/images/contactPage.webp"
                 className="aspect-16/11"
                 tone="sand"
               />
@@ -158,8 +198,7 @@ const isValid =
                     Message received
                   </h2>
                   <p className="text-sm leading-6 text-(--gc-taupe)">
-                    This is a front-end placeholder submission. Connect it to
-                    your email/CRM backend in development.
+                    Thank you for your message. We'll get back to you soon!
                   </p>
                   <Button
                     onClick={() => setStatus("idle")}
@@ -169,7 +208,11 @@ const isValid =
                   </Button>
                 </div>
               ) : (
-                <form className="space-y-4" onSubmit={onSubmit}>
+                <form
+                  className="space-y-4"
+                  onSubmit={onSubmit}
+                  encType="multipart/form-data"
+                >
                   <div className="grid gap-4 md:grid-cols-2">
                     <label className="space-y-2">
                       <div className="text-xs font-medium tracking-[0.22em] text-(--gc-taupe) uppercase">

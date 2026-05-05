@@ -1,10 +1,10 @@
-export type TenantCategory = "Food" | "Beverage" | "Café";
+export type TenantCategory = "Food" | "Beverage" | "Café" | "Other";
 
 export type Tenant = {
   slug: string;
   name: string;
   category: TenantCategory;
-  floor: "G" | "1" | "2";
+  floor: "M" | "1" | "2" | "3" | "4" | "5";
   blurb: string;
   logoImage?: string;
   interiorImage?: string;
@@ -14,28 +14,145 @@ export type Tenant = {
   socialLabel: string;
   phone: string;
   socialUrl: string;
-  map: string;
 };
 
 export const TENANTS: Tenant[] = [
   {
-    slug: "rainforest-cafe",
-    name: "Rainforest Café Bangkok",
+    slug: "jian-cha",
+    name: "Jian Cha",
+    category: "Beverage",
+    floor: "2",
+    blurb:
+      "JIAN CHA (见茶山) is a premium Thai-Chinese tea brand blending traditional tea methods with modern, fresh fruit tea innovations. Known for its signature creamy grape smoothie, high-quality ingredients, and elegant branding, it offers a luxurious yet health-conscious tea experience.",
+    logoImage: "public/images/tenants/JianCha/Logo.png",
+    interiorImage: "public/images/tenants/JianCha/Interior.webp",
+    heroImage: "public/images/tenants/JianCha/Hero.jpg",
+    galleryImages: ["public/images/tenants/JianCha/Gallery1.webp", 
+                    "public/images/tenants/JianCha/Gallery2.webp",
+                    ],
+    hours: "Daily 09:00–22:00",
+    socialLabel: "@jiancha.official",
+    phone: "081-692-9529",
+    socialUrl: "https://www.instagram.com/jiancha.official/",
+  },
+  {
+    slug: "rainforest",
+    name: "Rainforest Café",
     category: "Café",
-    floor: "G",
+    floor: "2",
     blurb:
       "Originally located in the misty forests at Kanchanaburi, Rainforest Cafe has now brought its enchanting Rainy Season concept to Bangkok. Embracing the romance and melancholy of the rainy season with the soothing sound from raindrops.",
-    logoImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2IhzFXDxNTAoQbFw2Mcsm4QRZerET3zDhMA&s",
-    interiorImage: "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqy0KXps0qzL-XR7_R-scmjjgpVwKCPs1-VjEyGNw3QbtB6taNyL7DHgSRakBaBHmCvtk0dOB6GdV1w2xYSGLx1MdttY2eTolavqN5J18WKIP3xnqIB3hKOUfkLJ8DVtuUIZKVH=s1360-w1360-h1020-rw",
-    heroImage: "https://lh3.googleusercontent.com/p/AF1QipNyOd7JyYDJtgfR0Q2kRZZG5OkDvoLl5wsKT4G2=s1360-w1360-h1020-rw",
-    galleryImages: ["https://lh3.googleusercontent.com/gps-cs-s/AHVAweoJVkElMyeFGl3bgrLUAIU-4n1mNa7vfP8anm9wd77YFNRy_5jhIJWvU4wlETHYa4SMSM94s6_Pk1pQzAV8A-NrOXrldnkZLyHJbh58SXlJ0Qb__u8SD46UKMw-P6JBnuEES09brA=s1360-w1360-h1020-rw",
-                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwervIrOFfbO8y6isBc4hfQapWATpVXhWrRY6GtbwKM-eX56S_5WFWe7yOJVTU13pplhfucypVea-C1EmIv1X1AZlomC8MFsOq8RIQ0EPULV-lrizjalEcdpzFhOytYFoXuQdW5gb4dtmerpd=s1360-w1360-h1020-rw",
-                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoTBOts5_kGZB-oBHHhrGy06aC6YGj9LI0Gb3diyIpgO6MuEsdTaoqtXjXPn5NUKZzMgltlrKgE5fi3FJCtvpPJZ5KsJ0V3Gzjr6xFJdB_F2AakllXHK9JD-E5iAOTHhuPs2WDVGlg1Go7a=s1360-w1360-h1020-rw"
+    logoImage: "public/images/tenants/Rainforest/Logo.png",
+    interiorImage: "public/images/tenants/Rainforest/Interior.webp",
+    heroImage: "public/images/tenants/Rainforest/Hero.webp",
+    galleryImages: ["public/images/tenants/Rainforest/Gallery1.webp", 
+                    "public/images/tenants/Rainforest/Gallery2.webp",
+                    "public/images/tenants/Rainforest/Gallery3.webp",
+                    "public/images/tenants/Rainforest/Gallery5.webp",
                     ],
-    hours: "Daily 08:00–18:00",
+    hours: "Daily 10:00–21:00",
     socialLabel: "@rainforestcafe.bkk",
-    phone: "02-861-8080",
+    phone: "082-283-2025",
     socialUrl: "https://www.instagram.com/rainforestcafe.bkk/",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.039809170156!2d100.50420497485526!3d13.71603878667213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e299fe295f42fd%3A0x3de39e5d1a3c04c9!2sRainforest%20Cafe%20Bangkok!5e0!3m2!1sen!2sth!4v1770724243200!5m2!1sen!2sth",
+  },
+  {
+    slug: "gohan-gyudon",
+    name: "Gohan Gyudon",
+    category: "Food",
+    floor: "2",
+    blurb:
+      "GOHAN Gyudon (ごはん) is a popular Japanese rice bowl franchise in Thailand, starting from 89 THB. Known for quality beef imported from the USA and Australia, they offer signature gyudon, curry, and pork dishes featuring soft-boiled duck eggs.",
+    logoImage: "public/images/tenants/GohanGyudon/Logo.jpg",
+    interiorImage: "public/images/tenants/GohanGyudon/Interior.webp",
+    heroImage: "public/images/tenants/GohanGyudon/Hero.webp",
+    galleryImages: ["public/images/tenants/GohanGyudon/Gallery1.webp", 
+                    "public/images/tenants/GohanGyudon/Gallery2.webp",
+                    "public/images/tenants/GohanGyudon/Gallery3.webp",
+                    "public/images/tenants/GohanGyudon/Gallery4.webp",
+                    ],
+    hours: "Daily 11:00–20:00",
+    socialLabel: "@gohangyudon",
+    phone: "081-652-2979",
+    socialUrl: "https://www.instagram.com/gohangyudon/",
+  },
+  {
+    slug: "chubby-boy",
+    name: "Chubby Boy Slushy Bar",
+    category: "Café",
+    floor: "2",
+    blurb:
+      "Chubby Boy Slushy Bar is a trendy, pastel-themed slushy café known for its signature Thai Tea Chubby Cheese slushy, rich dark cocoa, and crispy bubble waffles.",
+    logoImage: "public/images/tenants/ChubbyBoy/Logo.jpg",
+    interiorImage: "public/images/tenants/ChubbyBoy/Interior.webp",
+    heroImage: "public/images/tenants/ChubbyBoy/Hero.jpg",
+    galleryImages: ["public/images/tenants/ChubbyBoy/Gallery1.webp", 
+                    "public/images/tenants/ChubbyBoy/Gallery2.webp",
+                    "public/images/tenants/ChubbyBoy/Gallery3.webp",
+                    "public/images/tenants/ChubbyBoy/Gallery4.webp",
+                    ],
+    hours: "Daily 10:00–20:00",
+    socialLabel: "@chubbyboy.ondiet",
+    phone: "083-920-59149",
+    socialUrl: "https://www.instagram.com/chubbyboy.ondiet/",
+  },
+  {
+    slug: "analog-skyflow",
+    name: "Analog Skyflow",
+    category: "Café",
+    floor: "5",
+    blurb:
+      "Analog Skyflow is a cafe & bar. It offers a cozy, vintage-inspired atmosphere featuring art, cassettes, and retro radio, featuring both indoor and outdoor zones",
+    logoImage: "public/images/tenants/AnalogSkyflow/Logo.jpg",
+    interiorImage: "public/images/tenants/AnalogSkyflow/Interior.webp",
+    heroImage: "public/images/tenants/AnalogSkyflow/Hero.webp",
+    galleryImages: ["public/images/tenants/AnalogSkyflow/Gallery1.webp",
+                    "public/images/tenants/AnalogSkyflow/Gallery2.webp",
+                    "public/images/tenants/AnalogSkyflow/Gallery3.webp",
+                    "public/images/tenants/AnalogSkyflow/Gallery4.webp",
+                    ],
+    hours: "Daily 15:00–24:00",
+    socialLabel: "@analogskyflow",
+    phone: "099-249-6528",
+    socialUrl: "https://www.instagram.com/analogskyflow/",
+  },
+  {
+    slug: "voila-flowers",
+    name: "Voila Flowers",
+    category: "Other",
+    floor: "M",
+    blurb:
+      "Viola Flowers is a boutique floral studio at specializing in custom-designed, personality-driven arrangements and interactive workshops, known for its concept that translates individual styles into unique floral art.",
+    logoImage: "public/images/tenants/ViolaFlowers/Logo.jpg",
+    interiorImage: "public/images/tenants/ViolaFlowers/Interior.webp",
+    heroImage: "public/images/tenants/ViolaFlowers/Hero.webp",
+    galleryImages: ["public/images/tenants/ViolaFlowers/Gallery1.webp",
+                    "public/images/tenants/ViolaFlowers/Gallery2.webp",
+                    "public/images/tenants/ViolaFlowers/Gallery3.webp",
+                    "public/images/tenants/ViolaFlowers/Gallery4.webp",
+                    ],
+    hours: "Daily 10:00–22:00",
+    socialLabel: "@violaflowers_bkk",
+    phone: "099-283-4595",
+    socialUrl: "https://www.instagram.com/violaflowers_bkk/",
+  },
+  {
+    slug: "fatbro",
+    name: "FatBro",
+    category: "Food",
+    floor: "2",
+    blurb:
+      "FATBRO (เฮียอ้วนปิ้งย่าง) is a popular Thai street food franchise specializing in premium grilled pork skewers (moo ping) and other grilled delicacies, known for operating 24 hours at some locations.",
+    logoImage: "public/images/tenants/FatBro/Logo.png",
+    interiorImage: "public/images/tenants/FatBro/Interior.webp",
+    heroImage: "public/images/tenants/FatBro/Interior.jpg",
+    galleryImages: ["public/images/tenants/FatBro/Interior.jpg"
+                    ],
+    hours: "Daily 07:30–22:00",
+    socialLabel: "@fatbrobkk",
+    phone: "080-649-1671",
+    socialUrl: "https://www.instagram.com/fatbrobkk/",
   },
 ];
+
+
+// Rainforest, Jian Cha, Gohan Gyudon, FatBro, Chubby Boy... Viola Flowers, Analog Skyflow

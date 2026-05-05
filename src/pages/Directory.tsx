@@ -54,9 +54,13 @@ export function Directory() {
                 onChange={(v) => setFloor(v as FloorFilter)}
                 options={[
                   { label: "All", value: "All" },
-                  { label: "Ground (G)", value: "G" },
+                  { label: "Mezzanine (M)", value: "M" },
                   { label: "Floor 1", value: "1" },
                   { label: "Floor 2", value: "2" },
+                  { label: "Floor 3", value: "3" },
+                  { label: "Floor 4", value: "4" },
+                  { label: "Floor 5", value: "5" },
+
                 ]}
               />
             </div>
@@ -75,6 +79,7 @@ export function Directory() {
                   { label: "Food", value: "Food" },
                   { label: "Beverage", value: "Beverage" },
                   { label: "Café", value: "Café" },
+                  { label: "Other", value: "Other" },
                 ]}
               />
 
@@ -156,10 +161,6 @@ export function Directory() {
                       />
                     )}
                   </div>
-                </div>
-
-                <div className="mt-4 line-clamp-2 text-sm leading-6 text-(--gc-taupe)">
-                  {t.blurb}
                 </div>
               </div>
             </Link>

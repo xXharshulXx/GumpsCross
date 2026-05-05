@@ -48,7 +48,7 @@ export function Dropdown({ label, value, options, onChange }: Props) {
 
       {/* Dropdown */}
       {open && (
-        <div className=" cursor-pointer absolute z-50 mt-1 w-full overflow-hidden rounded-2xl border border-[rgba(217,210,199,.7)] bg-[rgba(251,248,243,.95)] shadow-lg backdrop-blur-md">
+        <div className=" cursor-pointer absolute z-50 mt-0 w-full overflow-hidden rounded-2xl border border-[rgba(217,210,199,.7)] bg-[rgba(251,248,243,.95)] shadow-lg backdrop-blur-md">
           {options.map((opt) => (
             <button
               key={opt.value}

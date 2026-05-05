@@ -57,13 +57,13 @@ export function About() {
                 label="Architectural Detail"
                 className="aspect-4/3"
                 tone="stone"
-                src="https://lh3.googleusercontent.com/p/AF1QipNsHDzX3tTxfKfrucI305RrXQITiWz5FhA6JxhK=s1360-w1360-h1020-rw"
+                src="public/images/knowus1.webp"
               />
               <PlaceholderMedia
                 label="Light & Shadow"
                 className="aspect-16/10"
                 tone="blue"
-                src="https://lh3.googleusercontent.com/p/AF1QipPVIanaq9KcCK8lcjhwVx9vFCX7L6woxLmSRsE1=s1360-w1360-h1020-rw"
+                src="public/images/knowus2.webp"
               />
             </div>
           </div>
@@ -100,9 +100,9 @@ export function About() {
             description="Architecture designed to shape light, movement, and feeling." 
           />
           <div className="grid gap-4 md:grid-cols-3">
-            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="https://lh3.googleusercontent.com/p/AF1QipPtgZe_NKwKwYyW_InI1MlnVcq_e3WUF8ZyNhjD=s1360-w1360-h1020-rw" className="aspect-4/5" tone="stone" />
-            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="https://lh3.googleusercontent.com/p/AF1QipM96ySMGfHTkK7xjuV3MmZO4phEpY5Q-iU5QbdB=s1360-w1360-h1020-rw" className="aspect-4/5" tone="blue" />
-            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="https://lh3.googleusercontent.com/p/AF1QipNf4EmfgDX3iWDKbZH7V2hDtR893_z0w6Dpq5pC=s1360-w1360-h1020-rw" className="aspect-4/5" tone="sand" />
+            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="public/images/Atmosphere1.webp" className="aspect-4/5" tone="stone" />
+            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="public/images/Atmosphere2.jpg" className="aspect-4/5" tone="blue" />
+            <PlaceholderMedia label="[PLACEHOLDER: ARCHITECTURE IMAGES]" src="public/images/Atmosphere3.jpg" className="aspect-4/5" tone="sand" />
           </div>
         </Container>
       </section>
