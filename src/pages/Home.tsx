@@ -7,8 +7,7 @@ import { TENANTS } from "@/data/tenants";
 import { EVENTS } from "@/data/events";
 import { Link } from "react-router-dom";
 import { Tag } from "@/components/Tag";
-import { Analytics } from '@vercel/analytics/next';
-
+import { Analytics } from '@vercel/analytics/react';
 
 function formatDate(iso: string) {
   const d = new Date(iso + "T00:00:00");
