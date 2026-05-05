@@ -7,6 +7,8 @@ import { TENANTS } from "@/data/tenants";
 import { EVENTS } from "@/data/events";
 import { Link } from "react-router-dom";
 import { Tag } from "@/components/Tag";
+import { Analytics } from '@vercel/analytics/next';
+
 
 function formatDate(iso: string) {
   const d = new Date(iso + "T00:00:00");
@@ -66,7 +68,7 @@ function useScrollControls(ref: React.RefObject<HTMLDivElement | null>) {
 
 export function Home() {
   const now = new Date();
-
+  <Analytics />
   const upcoming = [...EVENTS]
     .filter((e) => {
       const start = new Date(e.startDateIso + "T00:00:00");
