@@ -33,17 +33,17 @@ export const UNITS: Unit[] = [
       "Suitable for beverage-led concepts. Subject to landlord approval.",
 
     heroImage:
-      "/images/units/pacamara/frontimage.webp",
+      "/images/Units/Pacamara/FrontImage.webp",
 
     interiorImage:
-      "/images/units/pacamara/frontimage.webp",
+      "/images/Units/Pacamara/FrontImage.webp",
 
     floorPlanImage:
-      "/images/units/pacamara/frontimage.webp",
+      "/images/Units/Pacamara/FrontImage.webp",
 
     galleryImages: [
-      "/images/units/pacamara/Outdoors.webp",
-      "/images/units/pacamara/frontimage.webp",
+      "/images/Units/Pacamara/Outdoors.webp",
+      "/images/Units/Pacamara/FrontImage.webp",
       
     ],
 
