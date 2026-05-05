@@ -16,6 +16,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  build: {
+    rollupOptions: {
+      external: [/^@vercel\/analytics\/(?!react)/],
+    },
+  },
+  optimizeDeps: {
+    include: ['@vercel/analytics/react'],
+    exclude: ['@vercel/analytics/next'],
+  },
   server: {
     host: true,
     port: 5173
